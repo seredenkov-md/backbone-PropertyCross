@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Главная страница поиска -->
+    <div id="main">
+    </div>
+    <!-- SCRIPTS -->
+    <!-- https://github.com/tastejs/PropertyCross/tree/master/specification#misc -->
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/backbone.js"></script>
+    <script src="js/lib/backbone.localStorage.js"></script>
+
+    <!-- SAMPLE
+    <script src="js/sample.js"></script>
+    -->
+
+    <!-- APP -->
+    <!-- templates -->
+    <script type="text/template" id="main-template">
+        <h2>PropertyCross</h2>
+        <div>
+            <a href="#/favourites"><button>★ My Favourites</button></a>
+            <a href="#/results"><button>Results of search</button></a>
+        </div>
+        <div>
+            <span> “Use the form below to search for houses to buy.
+                You can search by place-name, postcode, or click 'My location',
+                to search in your current location!”
+            </span>
+        </div>
+        <div>
+            <div>
+                <input autofocus type="text" size="30" id="query-text" placeholder="input place" data-key="">
+            </div>
+            <div>
+                <button id="do-search">Go</button>
+                <button disabled>My location</button>
+            </div>
+        </div>
+
+        <div id="state-area">
+            <div id="error-area">
+                <!-- область для вывода сообщений об ошибках-->
+            </div>
+            <div id="locations-area">
+                <!-- область для вывода списка мест: либо предлагаемые места, либо история поискаов-->
+            </div>
+        </div>
+
+        <!--это полупрозрачный фон-->
+        <div id="overlay">
+            <div class="parent-image"><img src="img/loading.gif"></div>
+        </div>
+
+    </script>
+
+
+    <!--
+    <a href="#/search/<%= place_name %>" data-key="<%= place_name %>" class="location"><%= long_title %></a>
+    -->
+
+    <script type="text/template" id="location-template">
+        <div>
+            <div data-key="<%= place_name %>" class="location"><%= long_title %></div>
+        </div>
+    </script>
+
+    <script type="text/template" id="history-location-template">
+        <div>
+            <div data-key="<%= place_name %>" class="location"><%= place_name %> (<%= total_results %>)</div>
+        </div>
+    </script>
+
+    <!-- Страница избраного -->
+    <script type="text/template" id="favourites-template">
+        <h2>Favourites</h2>
+        <div id="favoritesList"></div>
+    </script>
+
+    <!-- последние поисковые запросы -->
+    <script type="text/template" id="locations-template">
+    </script>
+
+
+    <!-- Страница результатов поиска -->
+    <script type="text/template" id="results-template">
+        <h2>Search Results Page</h2>
+        <div></div><p>
+        <div id="resultList"></div>
+        <div id="load-more">Load more</div>
+    </script>
+
+    <script type="text/template" id="item-template">
+        <a href="#offer/<%= guid %>">
+            <img src="<%= thumb_url %>">
+        </a>
+        <ul>
+            <li>кол-во ванных комнат: <%= bathroom_number %></li>
+            <li>кол-во спален: <%= bedroom_number %></li>
+            <li>кол-во гаражей: <%= car_spaces %></li>
+            <li>цена: <%= price_formatted%></li>
+        </ul>
+    </script>
+
+    <script type="text/template" id="offer-template">
+        <h3>Property Details</h3>
+        <div>
+            <button id="toggleFavorites"><%= inFavourites ? '&#9733' : '&#9734' %></button>
+            <div ><%= title %></div>
+        </div>
+        <img class="big-image" src="<%= img_url %>">
+        <ul>
+            <li>кол-во ванных комнат: <%= bathroom_number %></li>
+            <li>кол-во спален: <%= bedroom_number %></li>
+            <li>кол-во гаражей: <%= car_spaces %></li>
+            <li>цена: <%= price_formatted%></li>
+        </ul>
+        <span><%= summary %></span>
+
+
+
+    </script>
+
+    <!-- models -->
+    <script src="js/app/models/location.js"></script>
+    <script src="js/app/models/offer.js"></script>
+    <!-- collections -->
+    <script src="js/app/collections/favourites.js"></script>
+    <script src="js/app/collections/locations.js"></script>
+    <script src="js/app/collections/possibleLocations.js"></script>
+    <script src="js/app/collections/results.js"></script>
+
+    <!-- views -->
+    <script src="js/app/views/favouritesView.js"></script>
+    <script src="js/app/views/itemView.js"></script>
+    <script src="js/app/views/locationsView.js"></script>
+    <script src="js/app/views/mainView.js"></script>
+    <script src="js/app/views/offerView.js"></script>
+    <script src="js/app/views/resultsView.js"></script>
+
+    <script src="js/app/routers/router.js"></script>
+    <script src="js/app/app.js"></script>
+</body>
+</html>
