@@ -1,4 +1,3 @@
-/*global Backbone */
 var app = app || {};
 
 (function () {
@@ -59,24 +58,7 @@ var app = app || {};
         offer: function(id) {
             console.log('страница просмотра выбранного (' + id + ') объявления');
             var offer = new app.Offer();
-            offer.search(id);
-
-            /*
-            var model = app.results.get(id);
-            //var model = new app.Offer();
-            // todo: если айди берем из избранного, а коллекция results уже поменялась,
-            // тогда в ней не будет модели с нужным айди...
-            // подготовить другой способ для доступа к объявлению
-            // либо искать и в результатах и в изранном, либо дергать в апи (если там есть)
-            if (model) {
-                var view = new app.OfferView({model: model});
-                $('#main').empty().append(view.render().el);
-            } else {
-                $('#main').empty().append('Something is broken');
-                //Backbone.history.navigate('#', {trigger: true});
-            }
-
-            */
+            offer.search(id);   // todo: метод search вынести в метод класса, а не  экземпляра..
         }
     });
 })();

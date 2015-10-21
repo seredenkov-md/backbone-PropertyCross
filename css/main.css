@@ -11,12 +11,19 @@ button {
     cursor: pointer;
 }
 
+.btn-right {
+    position: fixed;
+    top: 15px;
+    right: 15px
+}
+
 #error-area {
     color: #341217;
 }
 
 #locations-area {
-    border: 2px solid #555;
+    border: 2px solid #2a5266;
+    padding: 8px;
 }
 
 img.big-image {
@@ -32,7 +39,8 @@ img.big-image {
 }
 
 .itemContainer {
-    border: 1px solid #555;
+    border: 2px solid #2a5266;
+    margin: 5px;
 }
 
 .itemContainer img{

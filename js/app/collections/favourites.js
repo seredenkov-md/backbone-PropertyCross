@@ -1,13 +1,8 @@
-// в эту коллекцию будут добавляться ибзранные объявления
-
-/*global Backbone */
 var app = app || {};
 
 (function () {
     'use strict';
 
-    // Favorites Collection
-    // ---------------
     app.Favourites = Backbone.Collection.extend({
         model: app.Offer,
         localStorage: new Backbone.LocalStorage('PropertyCross-Favourites'),

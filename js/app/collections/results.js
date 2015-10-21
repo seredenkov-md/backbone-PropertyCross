@@ -19,26 +19,12 @@ var app = app || {};
     };
 
     app.Results = Backbone.Collection.extend({
+
         model: app.Offer,
-        //localStorage: new Backbone.LocalStorage('todos-backbone'),
-        /*
-        search : function(location) {
-            console.log('Тут отправляем запрос к API для получения списка объявлений по запросу', location);
-            // после проведения поиска, в случае наличия результатов, обновляем коллекцию
-            // ...и рендерим шаблон
-            // так же параметры в модель locations добавить новый элемент
-            // с параметрами location и total_results
-            this.sendRequest({ place_name: location}); // location
-        },
-        */
 
         search: function(query) {
             console.log('Тут отправляем запрос к API для получения списка объявлений по запросу', location);
-            // == number_of_results=50 - число объявлений в результате 20 - 50.
-            // от этого параметра зависит число страниц дял выдачи
-            // (получить можно только перые 1000 объявлений)
 
-            // todo: добавить функционал изменения параметров запроса. 1) изменяем номер страницы выдачи!!!
             //  http://api.nestoria.co.uk/api?
             //  country=uk&pretty=0
             //  action=search_listings
@@ -52,6 +38,7 @@ var app = app || {};
                 '&listing_type=buy' +
                 '&number_of_results=' + app.resultInfo.pageSize +
                 '&page=' + app.resultInfo.currentPage +
+                //'&sort=price_highlow' + //'&sort=price_lowhigh' +
                 '&place_name=' + query;
 
             var self = this;
@@ -201,7 +188,6 @@ var app = app || {};
 
         processingOfError: function(jqXHR, textStatus) {
             var error_text = '';
-            // todo: сделать обработку ошибок
             if (textStatus === 'timeout') {
                 //вывести сообщение о превышении времени ожидания ответа
                 //do something. Try again perhaps?
@@ -216,7 +202,6 @@ var app = app || {};
                 // todo: добавить более точное определдение ошибок, и сообщения о них.
                 error_text = messages.ERROR_OTHER;
             }
-            // todo: инициировать изменение состояния главной вьюхи, передать текст ошибки
             app.errorText = error_text;
             app.mainView.render();
         }

@@ -39,8 +39,8 @@
                 <input autofocus type="text" size="30" id="query-text" placeholder="input place" data-key="">
             </div>
             <div>
-                <button id="do-search">Go</button>
-                <button disabled>My location</button>
+                <button id="do-search" class="ui-btn">Go</button>
+                <button disabled class="ui-btn">My location</button>
             </div>
         </div>
 
@@ -111,8 +111,8 @@
     <script type="text/template" id="offer-template">
         <h3>Property Details</h3>
         <div>
-            <button id="toggleFavorites"><%= inFavourites ? '&#9733' : '&#9734' %></button>
             <div ><%= title %></div>
+            <button id="toggleFavorites" class="btn-right"><%= inFavourites ? '&#9733' : '&#9734' %></button>
         </div>
         <img class="big-image" src="<%= img_url %>">
         <ul>
